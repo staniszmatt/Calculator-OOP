@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+}
+
+.wrapper {
+    height: 100vh;
+    width: 100vw;
+    background: black;
+}
+
+.name-header {
+    width: 100%;
+    background-color: rgb(0, 217, 255);
+    font-size: 4em;
+    text-align: center;
+    font-weight: bolder;
+    font-family: fantasy;
+}
+.name-header div {
+    padding: 2%;
+}
+.calc-container {
+    height: 600px;
+    width: 495px;
+    background-color: black;
+    margin: 10vh auto;
+    background-image: url("images/img-noise-370x470.png");
+    border-radius: 15px;
+    border: 1px solid black;
+    box-shadow: 10px 10px 5px grey;
+}
+
+.display{
+    width: auto;
+    height: 24%;
+    margin: auto;
+    display: flex;
+}
+
+output {
+    width: 95%;
+    margin: auto;
+    background-color: white;
+    border-radius: 15%;
+    border: 2px solid blue;
+    font-size: 6vh;
+    text-align: right;
+    font-size: 5rem;
+}
+
+.button-container {
+    background: red;
+    display: contents;
+}
+
+.row-container {
+    height: 14%;
+    display: flex;
+    width: 85%;
+    align-items: center;
+    margin: auto;
+}
+
+.number-button, 
+.function-button {
+    height: 100%;
+    width: 25%;
+    border-radius: 40%; 
+    outline: none;
+    border: 1px solid blue;
+    font-size: xx-large;
+    font-family: sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #4CAF50;
+    box-shadow: 6px 6px 0px grey;
+}
+.number-button:hover, 
+.function-button:hover {
+    
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+}
+.number-button:active, 
+.function-button:active {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    box-shadow: 6px 6px 0px grey;
+    transform: scale(.9);
+}
+.row-container:nth-child(5) .button-container:first-child button {
+    width: 50%
+}
+.row-container:first-child .button-container:nth-child(4) .function-button {
+    background-image: url(images/divid.png);
+    background-size: 47px;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-size: 0;
+}
