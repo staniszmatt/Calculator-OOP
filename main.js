@@ -7,12 +7,11 @@ function loadAfterInitialize() {
 }
 
 function getButtonText() {
-  console.log("Current Array ", buttonPressedArray);
   var buttonValue = $(this).text();
   var currentNumberString = buttonPressedArray[buttonPressedArray.length - 1];
   if (checkToReturnOperator(buttonValue)) {
     if (buttonPressedArray.length === 3 && buttonValue === "=" && buttonPressedArray[buttonPressedArray.length - 1] === "") {
-      return;
+      repeatMathOperationCheck(buttonValue);
     } else {
       repeatMathOperationCheck(buttonValue);
     }
@@ -110,7 +109,7 @@ function repeatMathOperationCheck(operator) {
   } else if (operator === "=" && buttonPressedArray[2] === "") {
     buttonPressedArray[buttonPressedArray.length - 1] += buttonPressedArray[0];
     buttonPressedArray.push("=");
-    doMathFunction();
+    doMathFunction(buttonPressedArray);
   } else if (operator !== "=") { //setup order of operation
     if (buttonPressedArray.length > 2) {
       if (operator !== buttonPressedArray[1] && buttonPressedArray[2] === "") {
@@ -273,5 +272,4 @@ function setToMathValue(mathValue) {
 function displayNumbers() {
   var displayVar = buttonPressedArray[buttonPressedArray.length - 1];
   $("output").text(displayVar);
-  console.log("display ", buttonPressedArray);
 }
