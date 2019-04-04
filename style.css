@@ -5,7 +5,10 @@ body {
 .wrapper {
     height: 100vh;
     width: 100vw;
-    background: black;
+    background-image: url("images/black-close-up-dark-396547.jpg");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: cover;
 }
 
 .name-header {
