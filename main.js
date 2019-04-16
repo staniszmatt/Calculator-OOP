@@ -289,6 +289,6 @@ function fadeDisplay(){
     () => {
       $("output").removeClass("fade-in")
     }
-    , 800);
+    , 100);
 }
 

@@ -43,7 +43,7 @@ div.display>output {
 }
 
 .fade-in{
-    animation:blinkingText 0.8s;
+    animation:blinkingText 0.4s;
 }
 @keyframes blinkingText{
 	0%{		color: transparent;	}
