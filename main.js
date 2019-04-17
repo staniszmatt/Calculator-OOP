@@ -9,6 +9,7 @@ function loadAfterInitialize() {
 }
 
 function getButtonText() {
+  console.log("Button Pressed is, ", $(this));
   fadeDisplay();//Fades display each time a button is clicked
   var buttonValue = $(this).text();
   var currentNumberString = buttonPressedArray[buttonPressedArray.length - 1];
