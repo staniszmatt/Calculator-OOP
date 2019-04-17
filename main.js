@@ -6,10 +6,15 @@ function loadAfterInitialize() {
   var demo = new Demo();
   $("button").click(getButtonText);
   $("button.demo").click(demo.startCalculations);
+  $("button.side-display").click(toggleSideDisplay);
+}
+
+function toggleSideDisplay(){
+  $("output.equation-display").toggle("display");
 }
 
 function getButtonText() {
-  if ($("output").text() === "ERROR!"){
+  if ($("output.calc-display").text() === "ERROR!"){
     clearingButtonActions("CE");
   }
   fadeDisplay();//Fades display each time a button is clicked
@@ -45,13 +50,13 @@ function getButtonText() {
 function clearingButtonActions(clearButtonOptionCEorC) {
   if (clearButtonOptionCEorC === "CE") {
     buttonPressedArray = [""];
-    $("output").text("0");
+    $("output.calc-display").text("0");
   } else {
     if (buttonPressedArray[buttonPressedArray.length - 2] === "=") {
       clearingButtonActions("CE");
     } else {
       buttonPressedArray[buttonPressedArray.length - 1] = "";
-      $("output").text("0");
+      $("output.calc-display").text("0");
     }
   }
 }
@@ -285,14 +290,14 @@ function displayNumbers() {
     }
     displayVar = tempString;
   }
-  $("output").text(displayVar);
+  $("output.calc-display").text(displayVar);
 }
 
 function fadeDisplay(){
-  $("output").addClass("fade-in");
+  $("output.calc-display").addClass("fade-in");
   setTimeout(
     () => {
-      $("output").removeClass("fade-in")
+      $("output.calc-display").removeClass("fade-in")
     }
     , 100);
 }
