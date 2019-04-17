@@ -44,6 +44,7 @@ function getButtonText() {
     buttonPressedArray[buttonPressedArray.length - 1] += buttonValue;
     orderOfOperations(buttonValue);
     displayNumbers();
+    console.log("one ", buttonPressedArray);
   }
 }
 
@@ -92,6 +93,7 @@ function restartCalcAfterEqualwithNum() {
   if (buttonPressedArray[buttonPressedArray.length - 1] === "=") {
     buttonPressedArray = [""];
     displayNumbers();
+    console.log("two ", buttonPressedArray);
   }
 }
 
@@ -137,6 +139,8 @@ function repeatMathOperationCheck(operator) {
     buttonPressedArray.push(operator);
     orderOfOperations(operator)
   }
+  sideDisplay();
+  console.log("operand check ", buttonPressedArray);
 }
 
 function orderOfOperations(operator) {
@@ -163,9 +167,11 @@ function sameOperationMath(operator) {
   if (operator === "=") {
     doMathFunction(buttonPressedArray);
     displayNumbers();
+    console.log("three ", buttonPressedArray);
   } else {
     var tempTotal = doMathFunction(buttonPressedArray);
     displayNumbers();
+    console.log("four ", buttonPressedArray);
     var tempMathArray = [];
     tempMathArray.push(tempTotal);
     tempMathArray.push(operator);
@@ -273,10 +279,12 @@ function setToMathValue(mathValue) {
   if (mathValue === "ERROR!") {
     buttonPressedArray = ["ERROR!"];
     displayNumbers();
+    console.log("five ", buttonPressedArray);
   } else {
     mathValue = mathValue.toString();
     buttonPressedArray.push(mathValue);
     displayNumbers();
+    console.log("six ", buttonPressedArray);
   }
 }
 
@@ -291,6 +299,7 @@ function displayNumbers() {
     displayVar = tempString;
   }
   $("output.calc-display").text(displayVar);
+  console.log("seven ", buttonPressedArray);
 }
 
 function fadeDisplay(){
@@ -300,5 +309,18 @@ function fadeDisplay(){
       $("output.calc-display").removeClass("fade-in")
     }
     , 100);
+}
+
+function sideDisplay(){
+  let equationString = '';
+  if (buttonPressedArray[buttonPressedArray.length-2] === "="){
+    for (let arrayIndex = 0; arrayIndex < buttonPressedArray.length; arrayIndex++){
+      equationString += buttonPressedArray[arrayIndex] + " ";
+    }
+    const displayEquation = $("<p>")
+      .text(equationString)
+      .addClass("display-equations")
+    $("#display-wrapper").append(displayEquation);
+  }
 }
 

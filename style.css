@@ -20,6 +20,9 @@ button.demo {
   border-radius: 10px;
   margin: 5px;
 }
+p.display-equations{
+  margin: 2px; 
+}
 
 .wrapper {
   height: 100vh;
@@ -67,9 +70,14 @@ output.equation-display{
   border: 1px solid blue;
   text-align: left;
   font-size: 30px;
-  overflow: scroll;
+  overflow: auto;
   margin: 5px;
   text-align: center;
+}
+.display-wrapper{
+  display: flex;
+  overflow: auto;
+  flex-direction: column-reverse;
 }
 
 div.display>output.calc-display {
