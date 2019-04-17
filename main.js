@@ -46,12 +46,16 @@ function getButtonText() {
     displayNumbers();
     console.log("one ", buttonPressedArray);
   }
+  if (buttonPressedArray[buttonPressedArray.length-2] !== "="){
+    sideDisplay();
+  }
 }
 
 function clearingButtonActions(clearButtonOptionCEorC) {
   if (clearButtonOptionCEorC === "CE") {
     buttonPressedArray = [""];
     $("output.calc-display").text("0");
+    $("#display-wrapper").empty();
   } else {
     if (buttonPressedArray[buttonPressedArray.length - 2] === "=") {
       clearingButtonActions("CE");
@@ -139,7 +143,9 @@ function repeatMathOperationCheck(operator) {
     buttonPressedArray.push(operator);
     orderOfOperations(operator)
   }
-  sideDisplay();
+  if (buttonPressedArray[buttonPressedArray.length-2] === "="){
+    sideDisplay();
+  }
   console.log("operand check ", buttonPressedArray);
 }
 
@@ -313,7 +319,7 @@ function fadeDisplay(){
 
 function sideDisplay(){
   let equationString = '';
-  if (buttonPressedArray[buttonPressedArray.length-2] === "="){
+  
     for (let arrayIndex = 0; arrayIndex < buttonPressedArray.length; arrayIndex++){
       equationString += buttonPressedArray[arrayIndex] + " ";
     }
@@ -321,6 +327,5 @@ function sideDisplay(){
       .text(equationString)
       .addClass("display-equations")
     $("#display-wrapper").append(displayEquation);
-  }
 }
 

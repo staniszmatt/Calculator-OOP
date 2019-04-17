@@ -22,6 +22,7 @@ button.demo {
 }
 p.display-equations{
   margin: 2px; 
+  font-size: initial;
 }
 
 .wrapper {
