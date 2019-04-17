@@ -42,7 +42,7 @@ class Demo{
   }
 
   multiplicationDemo(){
-    const elmCalcList = ["#9", "#times", "#9", "#equal"];
+    const elmCalcList = ["#9", "#negative", "#times", "#9", "#equal"];
     this.timeOutSetup(elmCalcList, this.divisionDemo);
   }
 
