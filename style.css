@@ -15,8 +15,8 @@ body {
 }
 
 .calc-container {
-    height: 450px;
-    width: 300px;
+    height: 300px;
+    width: 225px;
     background-image: url("images/img-noise-370x470.png");
     background-repeat: no-repeat;
     background-position: center; 
@@ -39,8 +39,9 @@ div.display>output {
     border-radius: 15%;
     border: 1px solid blue;
     text-align: right;
-    font-size: 2.4rem;
+    font-size: 30px;
     overflow: hidden;
+    padding: 3px;
 }
 
 .fade-in{
@@ -70,7 +71,7 @@ div.display>output {
     border-radius: 20%; 
     outline: none;
     border: 1px solid blue;
-    font-size: xx-large;
+    font-size: 20px;
     font-family: sans-serif;
     font-weight: bold;
     cursor: pointer;
@@ -97,10 +98,31 @@ div.display>output {
 }
 .row-container:first-child .button-container:nth-child(4) .function-button {
     background-image: url(images/divid.png);
-    background-size: 47px;
+    background-size: 25px;
     background-position: center;
     background-repeat: no-repeat;
     font-size: 0;
 }
 
-@media (min)
+@media (min-width: 1024px){
+    .calc-container {
+        height: 400px;
+        width: 300px;
+    }
+}
+@media (min-width: 1600px){
+    .calc-container {
+        height: 600px;
+        width: 425px;
+    }
+    div.display>output {
+        font-size: 50px;
+    }
+    .number-button, 
+    .function-button {
+        font-size: 40px;
+    }
+    .row-container:first-child .button-container:nth-child(4) .function-button {
+        background-size: 50px;
+    }
+}
