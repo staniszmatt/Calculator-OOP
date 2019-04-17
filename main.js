@@ -3,10 +3,16 @@ $(document).ready(loadAfterInitialize);
 var buttonPressedArray = [""];
 
 function loadAfterInitialize() {
+  var demo = new Demo();
   $("button").click(getButtonText);
+  $("button.demo").click(demo.startCalculations);
 }
 
 function getButtonText() {
+  if ($("output").text() === "ERROR!"){
+    clearingButtonActions("CE");
+  }
+  fadeDisplay();//Fades display each time a button is clicked
   var buttonValue = $(this).text();
   var currentNumberString = buttonPressedArray[buttonPressedArray.length - 1];
   if (checkToReturnOperator(buttonValue)) {
@@ -271,5 +277,23 @@ function setToMathValue(mathValue) {
 
 function displayNumbers() {
   var displayVar = buttonPressedArray[buttonPressedArray.length - 1];
+  if (displayVar.length > 14){
+    var tempString = "";
+    tempString = displayVar.substring(0, 14); //Limiting the number of characters on display
+    if (tempString.endsWith(".")){
+      tempString += displayVar.charAt(15); //Adding a character if the cut off ends with a decimal 
+    }
+    displayVar = tempString;
+  }
   $("output").text(displayVar);
 }
+
+function fadeDisplay(){
+  $("output").addClass("fade-in");
+  setTimeout(
+    () => {
+      $("output").removeClass("fade-in")
+    }
+    , 100);
+}
+

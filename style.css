@@ -1,58 +1,74 @@
 body {
     margin: 0;
 }
-
+button.demo{
+    height: 55px;
+    width: 120px;
+    background: white;
+    font-size: 30px;
+    border-radius: 10px;
+    border: 1px solid blue;
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #4CAF50;
+    box-shadow: 4px 4px 0px grey;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
 .wrapper {
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     background-image: url("images/black-close-up-dark-396547.jpg");
     background-repeat: no-repeat;
     background-position: center; 
     background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.name-header {
-    width: 100%;
-    background-color: rgb(0, 217, 255);
-    font-size: 4em;
-    text-align: center;
-    font-weight: bolder;
-    font-family: fantasy;
-}
-.name-header div {
-    padding: 2%;
-}
 .calc-container {
-    height: 600px;
-    width: 495px;
-    background-color: black;
-    margin: 10vh auto;
+    height: 300px;
+    width: 225px;
     background-image: url("images/img-noise-370x470.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: cover;
     border-radius: 15px;
     border: 1px solid black;
     box-shadow: 10px 10px 5px grey;
 }
 
 .display{
-    width: auto;
     height: 24%;
     margin: auto;
     display: flex;
 }
 
-output {
+div.display>output {
     width: 95%;
     margin: auto;
     background-color: white;
     border-radius: 15%;
-    border: 2px solid blue;
-    font-size: 6vh;
+    border: 1px solid blue;
     text-align: right;
-    font-size: 5rem;
+    font-size: 30px;
+    overflow: hidden;
+    padding: 3px;
+}
+
+.fade-in{
+    animation:blinkingText 0.4s;
+}
+@keyframes blinkingText{
+	0%{		color: transparent;	}
+	100%{	color: #000;	}
 }
 
 .button-container {
-    background: red;
     display: contents;
 }
 
@@ -68,15 +84,15 @@ output {
 .function-button {
     height: 100%;
     width: 25%;
-    border-radius: 40%; 
+    border-radius: 20%; 
     outline: none;
     border: 1px solid blue;
-    font-size: xx-large;
+    font-size: 20px;
     font-family: sans-serif;
     font-weight: bold;
     cursor: pointer;
     background-color: #4CAF50;
-    box-shadow: 6px 6px 0px grey;
+    box-shadow: 4px 4px 0px grey;
 }
 .number-button:hover, 
 .function-button:hover {
@@ -98,8 +114,31 @@ output {
 }
 .row-container:first-child .button-container:nth-child(4) .function-button {
     background-image: url(images/divid.png);
-    background-size: 47px;
+    background-size: 25px;
     background-position: center;
     background-repeat: no-repeat;
     font-size: 0;
+}
+
+@media (min-width: 1024px){
+    .calc-container {
+        height: 400px;
+        width: 300px;
+    }
+}
+@media (min-width: 1600px){
+    .calc-container {
+        height: 600px;
+        width: 425px;
+    }
+    div.display>output {
+        font-size: 50px;
+    }
+    .number-button, 
+    .function-button {
+        font-size: 40px;
+    }
+    .row-container:first-child .button-container:nth-child(4) .function-button {
+        background-size: 50px;
+    }
 }
