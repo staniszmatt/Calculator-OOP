@@ -320,12 +320,12 @@ function fadeDisplay(){
 function sideDisplay(){
   let equationString = '';
   
-    for (let arrayIndex = 0; arrayIndex < buttonPressedArray.length; arrayIndex++){
-      equationString += buttonPressedArray[arrayIndex] + " ";
-    }
-    const displayEquation = $("<p>")
-      .text(equationString)
-      .addClass("display-equations")
-    $("#display-wrapper").append(displayEquation);
+  for (let arrayIndex = 0; arrayIndex < buttonPressedArray.length; arrayIndex++){
+    equationString += buttonPressedArray[arrayIndex] + " ";
+  }
+  const displayEquation = $("<li>")
+    .text(equationString)
+    .addClass("display-equations")
+  $("#display-wrapper>ul").append(displayEquation);
 }
 
