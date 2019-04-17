@@ -3,7 +3,9 @@ $(document).ready(loadAfterInitialize);
 var buttonPressedArray = [""];
 
 function loadAfterInitialize() {
+  var demo = new Demo();
   $("button").click(getButtonText);
+  $("button.demo").click(demo.startCalculations);
 }
 
 function getButtonText() {
