@@ -55,7 +55,7 @@ function clearingButtonActions(clearButtonOptionCEorC) {
   if (clearButtonOptionCEorC === "CE") {
     buttonPressedArray = [""];
     $("output.calc-display").text("0");
-    $("#display-wrapper").empty();
+    $("#display-wrapper ul").empty();
   } else {
     if (buttonPressedArray[buttonPressedArray.length - 2] === "=") {
       clearingButtonActions("CE");
