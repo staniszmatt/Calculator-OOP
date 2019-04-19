@@ -1,92 +1,103 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Calculator</title>
-        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-        <script src="main.js"></script>
-        <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-    </head>
-    <body>
-        <div class="wrapper">
-            <div class="name-header">
-                <div>
-                    Matthew's Calculator
-                </div>
+  <head>
+    <title>Calculator</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script src="demo.js"></script>
+    <script src="main.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="nav">
+          <button class="demo number-button">Demo</button>
+          <button class="side-display number-button">Side Display</button>
+      </div>
+      <div class="main-container" > 
+        <output class="equation-display">
+          <h4 class="side-display-header" >
+              Calculations Display:
+          </h4>
+          <div id="display-wrapper">
+            <ul>
+            </ul>
+          </div>
+        </output>
+        <div class="calc-container">
+          <div class="display">
+            <output class="calc-display fade-in">0</output>
+          </div>
+          <div class="button-container">
+            <div class="row-container">
+              <div class="button-container">
+                <button id="CE" class="function-button">CE</button>
+              </div>
+              <div class="button-container">
+                <button id="C" class="function-button">C</button>
+              </div>
+              <div class="button-container">
+                <button id="negative" class="number-button">+/-</button>
+              </div>
+              <div class="button-container">
+                <button id="divide" class="function-button">/</button>
+              </div>
             </div>
-            <div class="calc-container">
-                <div class="display">
-                    <output>0</output>
-                </div>
-                <div class="button-container">
-                    <div class="row-container">
-                        <div class="button-container">
-                            <button class="function-button">CE</button>
-                        </div>
-                        <div class="button-container">
-                            <button class="function-button">C</button>
-                        </div>
-                        <div class="button-container">
-                            <button class="number-button">+/-</button>
-                        </div>
-                        <div class="button-container">
-                            <button class="function-button">/</button>
-                        </div>
-                    </div>
-                    <div class="row-container">
-                        <div class="button-container">
-                            <button class="number-button">7</button>
-                        </div>
-                        <div class="button-container">
-                            <button class="number-button">8</button>
-                        </div>
-                        <div class="button-container">
-                            <button class="number-button">9</button>
-                        </div>
-                        <div class="button-container">
-                            <button class="function-button">x</button>
-                        </div>
-                    </div>
-                    <div class="row-container">
-                        <div class="button-container">
-                            <button class="number-button">4</button>
-                        </div>
-                        <div class="button-container">
-                            <button class="number-button">5</button>
-                        </div>
-                        <div class="button-container">
-                            <button class="number-button">6</button>
-                        </div>
-                        <div class="button-container">
-                            <button class="function-button">-</button>
-                        </div>
-                    </div>
-                    <div class="row-container">
-                        <div class="button-container">
-                            <button class="number-button">1</button>
-                        </div>
-                        <div class="button-container">
-                            <button class="number-button">2</button>
-                        </div>
-                        <div class="button-container">
-                            <button class="number-button">3</button>
-                        </div>
-                        <div class="button-container">
-                            <button class="function-button">+</button>
-                        </div>
-                    </div>
-                    <div class="row-container">
-                        <div class="button-container">
-                            <button class="number-button">0</button>
-                        </div>
-                        <div class="button-container">
-                            <button class="number-button">.</button>
-                        </div>
-                        <div class="button-container">
-                            <button class="function-button">=</button>
-                        </div>
-                    </div>
-                </div>
+            <div class="row-container">
+              <div class="button-container">
+                <button id="7" class="number-button">7</button>
+              </div>
+              <div class="button-container">
+                <button id="8" class="number-button">8</button>
+              </div>
+              <div class="button-container">
+                <button id="9" class="number-button">9</button>
+              </div>
+              <div class="button-container">
+                <button id="times" class="function-button">x</button>
+              </div>
             </div>
+            <div class="row-container">
+              <div class="button-container">
+                <button id="4" class="number-button">4</button>
+              </div>
+              <div class="button-container">
+                <button id="5" class="number-button">5</button>
+              </div>
+              <div class="button-container">
+                <button id="6" class="number-button">6</button>
+              </div>
+              <div class="button-container">
+                <button id="minus" class="function-button">-</button>
+              </div>
+            </div>
+            <div class="row-container">
+              <div class="button-container">
+                <button id="1" class="number-button">1</button>
+              </div>
+              <div class="button-container">
+                <button id="2" class="number-button">2</button>
+              </div>
+              <div class="button-container">
+                <button id="3" class="number-button">3</button>
+              </div>
+              <div class="button-container">
+                <button id="plus" class="function-button">+</button>
+              </div>
+            </div>
+            <div class="row-container">
+              <div class="button-container">
+                <button id="0" class="number-button">0</button>
+              </div>
+              <div class="button-container">
+                <button id="point" class="number-button">.</button>
+              </div>
+              <div class="button-container">
+                <button id="equal" class="function-button">=</button>
+              </div>
+            </div>
+          </div>
         </div>
-    </body>
+      </div>
+    </div>
+  </body>
 </html>
