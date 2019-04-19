@@ -44,7 +44,6 @@ function getButtonText() {
     buttonPressedArray[buttonPressedArray.length - 1] += buttonValue;
     orderOfOperations(buttonValue);
     displayNumbers();
-    console.log("one ", buttonPressedArray);
   }
   if (buttonPressedArray[buttonPressedArray.length-2] !== "="){
     sideDisplay();
@@ -97,7 +96,6 @@ function restartCalcAfterEqualwithNum() {
   if (buttonPressedArray[buttonPressedArray.length - 1] === "=") {
     buttonPressedArray = [""];
     displayNumbers();
-    console.log("two ", buttonPressedArray);
   }
 }
 
@@ -146,7 +144,6 @@ function repeatMathOperationCheck(operator) {
   if (buttonPressedArray[buttonPressedArray.length-2] === "="){
     sideDisplay();
   }
-  console.log("operand check ", buttonPressedArray);
 }
 
 function orderOfOperations(operator) {
@@ -173,11 +170,9 @@ function sameOperationMath(operator) {
   if (operator === "=") {
     doMathFunction(buttonPressedArray);
     displayNumbers();
-    console.log("three ", buttonPressedArray);
   } else {
     var tempTotal = doMathFunction(buttonPressedArray);
     displayNumbers();
-    console.log("four ", buttonPressedArray);
     var tempMathArray = [];
     tempMathArray.push(tempTotal);
     tempMathArray.push(operator);
@@ -285,12 +280,10 @@ function setToMathValue(mathValue) {
   if (mathValue === "ERROR!") {
     buttonPressedArray = ["ERROR!"];
     displayNumbers();
-    console.log("five ", buttonPressedArray);
   } else {
     mathValue = mathValue.toString();
     buttonPressedArray.push(mathValue);
     displayNumbers();
-    console.log("six ", buttonPressedArray);
   }
 }
 
@@ -305,7 +298,6 @@ function displayNumbers() {
     displayVar = tempString;
   }
   $("output.calc-display").text(displayVar);
-  console.log("seven ", buttonPressedArray);
 }
 
 function fadeDisplay(){
