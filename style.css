@@ -183,6 +183,7 @@ div.display>output.calc-display {
   }
   output.equation-display {
     display: flex;
+    margin-top: 95px;
   }
 }
 
@@ -193,6 +194,7 @@ div.display>output.calc-display {
     width: 425px;
   }
   output.equation-display {
+    margin-top: 0;
     height: 600px;
     width: 425px;
   }
