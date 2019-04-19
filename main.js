@@ -6,10 +6,15 @@ function loadAfterInitialize() {
   var demo = new Demo();
   $("button").click(getButtonText);
   $("button.demo").click(demo.startCalculations);
+  $("button.side-display").click(toggleSideDisplay);
+}
+
+function toggleSideDisplay(){
+  $("output.equation-display").toggle("display");
 }
 
 function getButtonText() {
-  if ($("output").text() === "ERROR!"){
+  if ($("output.calc-display").text() === "ERROR!"){
     clearingButtonActions("CE");
   }
   fadeDisplay();//Fades display each time a button is clicked
@@ -39,19 +44,24 @@ function getButtonText() {
     buttonPressedArray[buttonPressedArray.length - 1] += buttonValue;
     orderOfOperations(buttonValue);
     displayNumbers();
+    console.log("one ", buttonPressedArray);
+  }
+  if (buttonPressedArray[buttonPressedArray.length-2] !== "="){
+    sideDisplay();
   }
 }
 
 function clearingButtonActions(clearButtonOptionCEorC) {
   if (clearButtonOptionCEorC === "CE") {
     buttonPressedArray = [""];
-    $("output").text("0");
+    $("output.calc-display").text("0");
+    $("#display-wrapper ul").empty();
   } else {
     if (buttonPressedArray[buttonPressedArray.length - 2] === "=") {
       clearingButtonActions("CE");
     } else {
       buttonPressedArray[buttonPressedArray.length - 1] = "";
-      $("output").text("0");
+      $("output.calc-display").text("0");
     }
   }
 }
@@ -87,6 +97,7 @@ function restartCalcAfterEqualwithNum() {
   if (buttonPressedArray[buttonPressedArray.length - 1] === "=") {
     buttonPressedArray = [""];
     displayNumbers();
+    console.log("two ", buttonPressedArray);
   }
 }
 
@@ -132,6 +143,10 @@ function repeatMathOperationCheck(operator) {
     buttonPressedArray.push(operator);
     orderOfOperations(operator)
   }
+  if (buttonPressedArray[buttonPressedArray.length-2] === "="){
+    sideDisplay();
+  }
+  console.log("operand check ", buttonPressedArray);
 }
 
 function orderOfOperations(operator) {
@@ -158,9 +173,11 @@ function sameOperationMath(operator) {
   if (operator === "=") {
     doMathFunction(buttonPressedArray);
     displayNumbers();
+    console.log("three ", buttonPressedArray);
   } else {
     var tempTotal = doMathFunction(buttonPressedArray);
     displayNumbers();
+    console.log("four ", buttonPressedArray);
     var tempMathArray = [];
     tempMathArray.push(tempTotal);
     tempMathArray.push(operator);
@@ -268,10 +285,12 @@ function setToMathValue(mathValue) {
   if (mathValue === "ERROR!") {
     buttonPressedArray = ["ERROR!"];
     displayNumbers();
+    console.log("five ", buttonPressedArray);
   } else {
     mathValue = mathValue.toString();
     buttonPressedArray.push(mathValue);
     displayNumbers();
+    console.log("six ", buttonPressedArray);
   }
 }
 
@@ -285,15 +304,27 @@ function displayNumbers() {
     }
     displayVar = tempString;
   }
-  $("output").text(displayVar);
+  $("output.calc-display").text(displayVar);
+  console.log("seven ", buttonPressedArray);
 }
 
 function fadeDisplay(){
-  $("output").addClass("fade-in");
+  $("output.calc-display").addClass("fade-in");
   setTimeout(
     () => {
-      $("output").removeClass("fade-in")
+      $("output.calc-display").removeClass("fade-in")
     }
     , 100);
 }
 
+function sideDisplay(){
+  let equationString = '';
+  
+  for (let arrayIndex = 0; arrayIndex < buttonPressedArray.length; arrayIndex++){
+    equationString += buttonPressedArray[arrayIndex] + " ";
+  }
+  const displayEquation = $("<li>")
+    .text(equationString)
+    .addClass("display-equations")
+  $("#display-wrapper>ul").append(displayEquation);
+}

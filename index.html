@@ -9,11 +9,23 @@
   </head>
   <body>
     <div class="wrapper">
-      <button class="demo number-button">Demo</button>
-      <div>
+      <div class="nav">
+          <button class="demo number-button">Demo</button>
+          <button class="side-display number-button">Side Display</button>
+      </div>
+      <div class="main-container" > 
+        <output class="equation-display">
+          <h4 class="side-display-header" >
+              Calculations Display:
+          </h4>
+          <div id="display-wrapper">
+            <ul>
+            </ul>
+          </div>
+        </output>
         <div class="calc-container">
           <div class="display">
-            <output class="fade-in">0</output>
+            <output class="calc-display fade-in">0</output>
           </div>
           <div class="button-container">
             <div class="row-container">
