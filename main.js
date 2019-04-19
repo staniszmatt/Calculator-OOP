@@ -328,4 +328,3 @@ function sideDisplay(){
     .addClass("display-equations")
   $("#display-wrapper>ul").append(displayEquation);
 }
-

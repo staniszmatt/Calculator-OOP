@@ -70,6 +70,7 @@ ul {
   text-align: center;
   padding: 0;
   font-size: initial;
+  scroll-behavior: auto;
 }
 
 output.equation-display{
