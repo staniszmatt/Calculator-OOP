@@ -38,7 +38,7 @@ p.display-equations{
 }
 
 .main-container{
-  display: inline-flex;
+  display: block;
 }
 
 .calc-container {
@@ -73,9 +73,9 @@ ul {
   scroll-behavior: auto;
 }
 
-output.equation-display{
+output.equation-display {
   height: 300px;
-  width: 300px;
+  width: 225px;
   background-color: white;
   border: 1px solid blue;
   text-align: left;
@@ -83,6 +83,7 @@ output.equation-display{
   overflow: auto;
   margin: 5px;
   text-align: center;
+  display: block;
 }
 .display-wrapper{
   display: flex;
@@ -172,17 +173,33 @@ div.display>output.calc-display {
   font-size: 0;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 760px) {
+  .main-container {
+    display: inline-flex;
+  }
   .calc-container {
     height: 400px;
     width: 300px;
   }
+  output.equation-display {
+    display: flex;
+  }
 }
 
 @media (min-width: 1600px) {
+
   .calc-container {
     height: 600px;
     width: 425px;
+  }
+  output.equation-display {
+    height: 600px;
+    width: 425px;
+  }
+
+  button.demo,
+  button.side-display {
+    font-size: 20px;
   }
 
   div.display>output.calc-display {
