@@ -8,15 +8,11 @@ body {
   left: 5px;
   display: inherit;
 }
-button.side-display {
-  height: 55px;
-  width: 120px;
-  border-radius: 10px;
-  margin: 5px;
-}
+
+button.side-display,
 button.demo {
   height: 55px;
-  width: 120px;
+  width: 125px;
   border-radius: 10px;
   margin: 5px;
 }
@@ -59,8 +55,10 @@ p.display-equations{
   display: flex;
 }
 
-h4.side-display-header{
-  margin: 10px;
+h6.side-display-header{
+  margin: 0;
+  background: aquamarine;
+  width: 100%;
 }
 
 ul {
@@ -74,7 +72,7 @@ ul {
 }
 
 output.equation-display {
-  height: 300px;
+  height: 230px;
   width: 225px;
   background-color: white;
   border: 1px solid blue;
@@ -84,6 +82,7 @@ output.equation-display {
   margin: 5px;
   text-align: center;
   display: block;
+  margin-top: 40px;
 }
 .display-wrapper{
   display: flex;
@@ -173,7 +172,7 @@ div.display>output.calc-display {
   font-size: 0;
 }
 
-@media (min-width: 760px) {
+@media (min-width: 600px) {
   .main-container {
     display: inline-flex;
   }

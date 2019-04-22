@@ -318,5 +318,5 @@ function sideDisplay(){
   const displayEquation = $("<li>")
     .text(equationString)
     .addClass("display-equations")
-  $("#display-wrapper>ul").append(displayEquation);
+  $("#display-wrapper>ul").prepend(displayEquation);
 }

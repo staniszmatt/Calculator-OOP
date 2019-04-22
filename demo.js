@@ -17,6 +17,8 @@ class Demo{
   }
   
   startCalculations(){
+    buttonPressedArray = [""];
+    $("output.calc-display").text("0");
     this.additionDemo();
   }
 
