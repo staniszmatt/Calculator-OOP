@@ -9,7 +9,12 @@ body {
   display: inherit;
 }
 
+button.cancel-demo {
+  display: none;
+}
+
 button.side-display,
+button.cancel-demo,
 button.demo {
   height: 55px;
   width: 125px;
@@ -193,6 +198,10 @@ div.display>output.calc-display {
 }
 
 @media (min-width: 1024px) {
+  .calc-container {
+    margin-top: 0;
+    height: 350px;
+  }
   output.equation-display {
     margin-top: 0px;
     height: 350px;
@@ -214,6 +223,7 @@ div.display>output.calc-display {
     left: unset;
   }
   button.side-display,
+  button.cancel-demo,
   button.demo {
     height: 75px;
     width: 175px;

@@ -7,10 +7,13 @@ function loadAfterInitialize() {
   $("button").click(getButtonText);
   $("button.demo").click(demo.startCalculations);
   $("button.side-display").click(toggleSideDisplay);
+  $("button.cancel-demo").click(demo.cancelDemo);
+  // $(".main-container").click(demo.cancelDemo);
 }
 
 function toggleSideDisplay(){
   $("output.equation-display").toggle("display");
+  $("button.demo").toggle("display");
 }
 
 function getButtonText() {
