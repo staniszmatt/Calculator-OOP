@@ -1,6 +1,7 @@
 $(document).ready(loadAfterInitialize);
 
 var buttonPressedArray = [""];
+var demoRunning = false;
 
 function loadAfterInitialize() {
   var demo = new Demo();
@@ -8,7 +9,7 @@ function loadAfterInitialize() {
   $("button.demo").click(demo.startCalculations);
   $("button.side-display").click(toggleSideDisplay);
   $("button.cancel-demo").click(demo.cancelDemo);
-  // $(".main-container").click(demo.cancelDemo);
+  $(".main-container").click(demo.cancelDemoCalculator);
 }
 
 function toggleSideDisplay(){
