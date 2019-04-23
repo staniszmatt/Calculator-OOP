@@ -141,6 +141,7 @@ div.display>output.calc-display {
   cursor: pointer;
   background-color: #4CAF50;
   box-shadow: 4px 4px 0px grey;
+  text-align: center;
 }
 
 .number-button:hover,
