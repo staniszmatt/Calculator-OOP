@@ -17,10 +17,12 @@ class Demo{
     this.divideByZeroDemo = this.divideByZeroDemo.bind(this);
     this.cancelDemoButtonActivate = this.cancelDemoButtonActivate.bind(this);
     this.cancelDemo = this.cancelDemo.bind(this);
+    this.cancelDemoCalculator = this.cancelDemoCalculator.bind(this);
   }
   
   startCalculations(){
     this.cancellation = false;
+    demoRunning = true;
     this.cancelDemoButtonActivate();
     buttonPressedArray = [""];
     $("output.calc-display").text("0");
@@ -59,11 +61,19 @@ class Demo{
   }
 
   cancelDemo(){
+    event.stopPropagation();
     $("button.demo").toggle("display");
     $("button.side-display").toggle("display");
     $("button.cancel-demo").toggle("display");
     this.cancellation = true;
+    demoRunning = false;
   }  
+
+  cancelDemoCalculator(){
+    if (demoRunning){
+      this.cancelDemo();
+    }
+  }
 
   equationTitleDemoAppend(titleToAppend){
     const displayEquation = $("<li>")
@@ -166,5 +176,6 @@ class Demo{
     const elmCalcList = ["#3", "#divide", "#0", "#equal"];
     this.equationTitleDemoAppend("Dividing By Zero:");
     this.timeOutSetup(elmCalcList);
+    demoRunning = false;
   }
 }
