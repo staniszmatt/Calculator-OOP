@@ -8,15 +8,11 @@ body {
   left: 5px;
   display: inherit;
 }
-button.side-display {
-  height: 55px;
-  width: 120px;
-  border-radius: 10px;
-  margin: 5px;
-}
+
+button.side-display,
 button.demo {
   height: 55px;
-  width: 120px;
+  width: 125px;
   border-radius: 10px;
   margin: 5px;
 }
@@ -38,7 +34,7 @@ p.display-equations{
 }
 
 .main-container{
-  display: inline-flex;
+  display: block;
 }
 
 .calc-container {
@@ -59,8 +55,10 @@ p.display-equations{
   display: flex;
 }
 
-h4.side-display-header{
-  margin: 10px;
+h6.side-display-header{
+  margin: 0;
+  background: rgb(026, 212, 196);
+  border: 1px solid blue;
 }
 
 ul {
@@ -73,9 +71,9 @@ ul {
   scroll-behavior: auto;
 }
 
-output.equation-display{
-  height: 300px;
-  width: 300px;
+output.equation-display {
+  height: 230px;
+  width: 216px;
   background-color: white;
   border: 1px solid blue;
   text-align: left;
@@ -83,6 +81,8 @@ output.equation-display{
   overflow: auto;
   margin: 5px;
   text-align: center;
+  display: block;
+  margin-top: 40px;
 }
 .display-wrapper{
   display: flex;
@@ -172,29 +172,63 @@ div.display>output.calc-display {
   font-size: 0;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 600px) {
+  .main-container {
+    display: inline-flex;
+  }
   .calc-container {
-    height: 400px;
+    height: 350px;
     width: 300px;
+  }
+  output.equation-display {
+    margin-top: 70px;
+    height: 275px;
+    width: 300px;
+  }
+  h6.side-display-header{
+    margin: 0;
+    /* width: 100%; */
+  }
+}
+
+@media (min-width: 1024px) {
+  output.equation-display {
+    margin-top: 0px;
+    height: 350px;
+    width: 300px;
+  }
+  h6.side-display-header{
+    font-size: 30px;
   }
 }
 
 @media (min-width: 1600px) {
-  .calc-container {
-    height: 600px;
-    width: 425px;
-  }
-
-  div.display>output.calc-display {
-    font-size: 50px;
-  }
-
   .number-button,
   .function-button {
-    font-size: 40px;
+    font-size: 30px;
+  } 
+  .nav {
+    position: fixed;
+    top: 10vh;
+    left: unset;
   }
-
-  .row-container:first-child .button-container:nth-child(4) .function-button {
-    background-size: 50px;
+  button.side-display,
+  button.demo {
+    height: 75px;
+    width: 175px;
+  }
+  .calc-container {
+    height: 600px;
+    width: 450px;
+  }
+  output.equation-display {
+    height: 600px;
+    width: 450px;
+  }
+  ul>li {
+    font-size: 30px;
+  }
+  div.display>output.calc-display {
+    font-size: 35px;
   }
 }
