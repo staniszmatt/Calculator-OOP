@@ -57,8 +57,8 @@ p.display-equations{
 
 h6.side-display-header{
   margin: 0;
-  background: aquamarine;
-  width: 100%;
+  background: rgb(026, 212, 196);
+  border: 1px solid blue;
 }
 
 ul {
@@ -73,7 +73,7 @@ ul {
 
 output.equation-display {
   height: 230px;
-  width: 225px;
+  width: 216px;
   background-color: white;
   border: 1px solid blue;
   text-align: left;
@@ -177,42 +177,58 @@ div.display>output.calc-display {
     display: inline-flex;
   }
   .calc-container {
-    height: 400px;
+    height: 350px;
     width: 300px;
   }
   output.equation-display {
-    display: flex;
-    margin-top: 95px;
+    margin-top: 70px;
+    height: 275px;
+    width: 300px;
+  }
+  h6.side-display-header{
+    margin: 0;
+    /* width: 100%; */
+  }
+}
+
+@media (min-width: 1024px) {
+  output.equation-display {
+    margin-top: 0px;
+    height: 350px;
+    width: 300px;
+  }
+  h6.side-display-header{
+    font-size: 30px;
   }
 }
 
 @media (min-width: 1600px) {
-
-  .calc-container {
-    height: 600px;
-    width: 425px;
-  }
-  output.equation-display {
-    margin-top: 0;
-    height: 600px;
-    width: 425px;
-  }
-
-  button.demo,
-  button.side-display {
-    font-size: 20px;
-  }
-
-  div.display>output.calc-display {
-    font-size: 50px;
-  }
-
   .number-button,
   .function-button {
-    font-size: 40px;
+    font-size: 30px;
+  } 
+  .nav {
+    position: fixed;
+    top: 10vh;
+    left: unset;
   }
-
-  .row-container:first-child .button-container:nth-child(4) .function-button {
-    background-size: 50px;
+  button.side-display,
+  button.demo {
+    height: 75px;
+    width: 175px;
+  }
+  .calc-container {
+    height: 600px;
+    width: 450px;
+  }
+  output.equation-display {
+    height: 600px;
+    width: 450px;
+  }
+  ul>li {
+    font-size: 30px;
+  }
+  div.display>output.calc-display {
+    font-size: 35px;
   }
 }

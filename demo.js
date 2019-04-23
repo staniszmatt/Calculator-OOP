@@ -33,53 +33,70 @@ class Demo{
     setTimeout(callbackFunction, timer);
   }
 
+  equationTitleDemoAppend(titleToAppend){
+    const displayEquation = $("<li>")
+    .text(titleToAppend)
+    .addClass("display-equations")
+    $("#display-wrapper>ul").prepend(displayEquation);
+  }
+
   additionDemo(){
     const elmCalcList = ["#1", "#plus", "#2", "#equal"];
+    this.equationTitleDemoAppend("Addition:");
     this.timeOutSetup(elmCalcList, this.subtractionDemo);
   }
 
   subtractionDemo(){
     const elmCalcList = ["#9", "#minus", "#2", "#equal"];
+    this.equationTitleDemoAppend("Subtraction:");
     this.timeOutSetup(elmCalcList, this.multiplicationDemo);
   }
 
   multiplicationDemo(){
     const elmCalcList = ["#9", "#negative", "#times", "#9", "#equal"];
+    this.equationTitleDemoAppend("Multiplication with negative number:");
     this.timeOutSetup(elmCalcList, this.divisionDemo);
   }
 
   divisionDemo(){
     const elmCalcList = ["#1", "#divide", "#3", "#equal"];
+    this.equationTitleDemoAppend("Division:");
     this.timeOutSetup(elmCalcList, this.successiveOperationDemo);
   }
 
   successiveOperationDemo(){
     const elmCalcList = ["#1", "#point", "#5", "#plus", "#1", "#point", "#5", "#plus", "#3", "#equal"];
+    this.equationTitleDemoAppend("Succesive Operation:");
     this.timeOutSetup(elmCalcList, this.repeatOperationDemo);
   }
 
   repeatOperationDemo(){
     const elmCalcList = ["#1", "#0", "#minus", "#1", "#equal", "#equal", "#equal", "#equal"];
+    this.equationTitleDemoAppend("Repeated Operation:");
     this.timeOutSetup(elmCalcList, this.rollOverOperationDemo);
   }
 
   rollOverOperationDemo(){
     const elmCalcList = ["#1", "#plus", "#1", "#plus", "#equal", "#plus", "#equal",];
+    this.equationTitleDemoAppend("Roll Over Operation:");
     this.timeOutSetup(elmCalcList, this.orderOfOperationsDemo);
   }
 
   orderOfOperationsDemo(){
     const elmCalcList = ["#1", "#plus", "#3", "#divide", "#4", "#plus", "#1", "#0", "#times", "#2", "#equal"];
+    this.equationTitleDemoAppend("Order Of Operations:");
     this.timeOutSetup(elmCalcList, this.partialOperandDemo);
   }
 
   partialOperandDemo(){
     const elmCalcList = ["#3", "#times", "#equal"];
+    this.equationTitleDemoAppend("Partial Operand:");
     this.timeOutSetup(elmCalcList, this.divideByZeroDemo);
   }
 
   divideByZeroDemo(){
     const elmCalcList = ["#3", "#divide", "#0", "#equal"];
+    this.equationTitleDemoAppend("Dividing By Zero:");
     this.timeOutSetup(elmCalcList);
   }
 }
