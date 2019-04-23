@@ -178,17 +178,17 @@ div.display>output.calc-display {
     display: inline-flex;
   }
   .calc-container {
-    height: 295px;
+    margin-top: 50px;
+    height: 275px;
     width: 240px;
   }
   output.equation-display {
-    margin-top: 70px;
-    height: 225px;
+    margin-top: 50px;
+    height: 270px;
     width: 250px;
   }
   h6.side-display-header{
     margin: 0;
-    /* width: 100%; */
   }
 }
 
