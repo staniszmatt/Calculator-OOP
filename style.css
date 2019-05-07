@@ -61,6 +61,8 @@ p.display-equations{
 }
 
 h6.side-display-header{
+  position: fixed;
+  width: inherit;
   margin: 0;
   background: rgb(026, 212, 196);
   border: 1px solid blue;
@@ -74,6 +76,7 @@ ul {
   padding: 0;
   font-size: initial;
   scroll-behavior: auto;
+  margin-top: 30px;
 }
 
 output.equation-display {
@@ -194,6 +197,9 @@ div.display>output.calc-display {
   }
   h6.side-display-header{
     margin: 0;
+  }
+  ul {
+    margin-top: 40px;
   }
 }
 
