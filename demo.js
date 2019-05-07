@@ -26,6 +26,7 @@ class Demo{
     this.cancelDemoButtonActivate();
     buttonPressedArray = [""];
     $("output.calc-display").text("0");
+    clearingButtonActions("CE");
     this.additionDemo();
   }
 

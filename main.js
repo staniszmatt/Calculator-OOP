@@ -42,8 +42,11 @@ function getButtonText() {
     } else if (buttonPressedArray[buttonPressedArray.length - 2] === "=") {
       buttonPressedArray.pop();
       restartCalcAfterEqualwithNum();
-    } else if (cancelingRepeatingDecimalCheck() && buttonValue === ".") {
+    } else if (cancelingRepeatingDecimalCheck() && buttonValue === "." || cancelRepeatingZeros(buttonValue)) {
       return;
+    }
+    if (buttonPressedArray[buttonPressedArray.length-1] === "" && buttonValue === "."){
+      buttonValue = "0." 
     }
     buttonPressedArray[buttonPressedArray.length - 1] += buttonValue;
     orderOfOperations(buttonValue);
@@ -293,6 +296,7 @@ function setToMathValue(mathValue) {
 
 function displayNumbers() {
   var displayVar = buttonPressedArray[buttonPressedArray.length - 1];
+
   if (displayVar.length > 14){
     var tempString = "";
     tempString = displayVar.substring(0, 14); //Limiting the number of characters on display
@@ -323,4 +327,8 @@ function sideDisplay(){
     .text(equationString)
     .addClass("display-equations")
   $("#display-wrapper>ul").prepend(displayEquation);
+}
+
+function cancelRepeatingZeros(buttonPressed){
+  if (buttonPressedArray[0] === "" && buttonPressed === "0") return true; 
 }

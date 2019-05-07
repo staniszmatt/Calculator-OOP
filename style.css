@@ -178,19 +178,19 @@ div.display>output.calc-display {
   font-size: 0;
 }
 
-@media (min-width: 568px) {
+@media (min-width: 560px) {
   .main-container {
     display: inline-flex;
   }
   .calc-container {
-    margin-top: 50px;
-    height: 275px;
-    width: 240px;
+    margin-top: 65px;
+    height: 230px;
+    width: 230px;
   }
   output.equation-display {
-    margin-top: 50px;
-    height: 270px;
-    width: 250px;
+    margin-top: 65px;
+    height: 230px;
+    width: 230px;
   }
   h6.side-display-header{
     margin: 0;
@@ -212,7 +212,7 @@ div.display>output.calc-display {
   }
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 1800px) {
   .number-button,
   .function-button {
     font-size: 30px;
