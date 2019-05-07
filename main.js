@@ -18,12 +18,13 @@ function toggleSideDisplay(){
 }
 
 function getButtonText() {
-  if ($("output.calc-display").text() === "ERROR!"){
-    clearingButtonActions("CE");
-  }
+
   fadeDisplay();//Fades display each time a button is clicked
   var buttonValue = $(this).text();
   var currentNumberString = buttonPressedArray[buttonPressedArray.length - 1];
+  if ($("output.calc-display").text() === "ERROR!" && buttonValue !== "C"){
+    return; 
+  }
   if (checkToReturnOperator(buttonValue)) {
     if (buttonPressedArray.length === 3 && buttonValue === "=" && buttonPressedArray[buttonPressedArray.length - 1] === "") {
       repeatMathOperationCheck(buttonValue);
@@ -37,13 +38,20 @@ function getButtonText() {
     tempNumber = Number(tempNumber) * -1;
     fixFloatNumbers(tempNumber);
   } else if (!isNaN(buttonValue) || buttonValue === ".") {
-    if (currentNumberString.length > 13) {
-      return;
-    } else if (buttonPressedArray[buttonPressedArray.length - 2] === "=") {
+    if (buttonPressedArray[buttonPressedArray.length - 2] === "=") {
       buttonPressedArray.pop();
       restartCalcAfterEqualwithNum();
-    } else if (cancelingRepeatingDecimalCheck() && buttonValue === ".") {
+    } else if (currentNumberString.length > 13) {
       return;
+    } else if (cancelingRepeatingDecimalCheck() && buttonValue === "." || cancelRepeatingZeros(buttonValue)) {
+      return;
+    }
+    if (buttonPressedArray[buttonPressedArray.length-1] === "" && buttonValue === "."){
+      buttonPressedArray[buttonPressedArray.length-1] = "0";
+    }  else if (buttonPressedArray[buttonPressedArray.length-1] === "0" && buttonValue === "0"){
+      return;
+    } else if (buttonPressedArray[buttonPressedArray.length-1] === "0"){
+      buttonPressedArray[buttonPressedArray.length-1] = "";
     }
     buttonPressedArray[buttonPressedArray.length - 1] += buttonValue;
     orderOfOperations(buttonValue);
@@ -55,13 +63,13 @@ function getButtonText() {
 }
 
 function clearingButtonActions(clearButtonOptionCEorC) {
-  if (clearButtonOptionCEorC === "CE") {
+  if (clearButtonOptionCEorC === "C") {
     buttonPressedArray = [""];
     $("output.calc-display").text("0");
     $("#display-wrapper ul").empty();
   } else {
     if (buttonPressedArray[buttonPressedArray.length - 2] === "=") {
-      clearingButtonActions("CE");
+      clearingButtonActions("C");
     } else {
       buttonPressedArray[buttonPressedArray.length - 1] = "";
       $("output.calc-display").text("0");
@@ -126,10 +134,11 @@ function repeatMathOperationCheck(operator) {
   } else if (buttonPressedArray.length === 1 && operator === "=") {
     return;
   } else if (operator === "=" && buttonPressedArray[2] === "") {
-    buttonPressedArray[buttonPressedArray.length - 1] += buttonPressedArray[0];
+    buttonPressedArray[2] = buttonPressedArray[0];
     buttonPressedArray.push("=");
     doMathFunction(buttonPressedArray);
-  } else if (operator !== "=") { //setup order of operation
+  } 
+  else if (operator !== "=") { //setup order of operation
     if (buttonPressedArray.length > 2) {
       if (operator !== buttonPressedArray[1] && buttonPressedArray[2] === "") {
         buttonPressedArray[1] = operator;
@@ -244,25 +253,29 @@ function doMathFunction(mathArray) {
   var num1 = Number(mathArray[0]);
   var num2 = Number(mathArray[2]);
   var operator = mathArray[1];
-  if (num2 === 0) {
+  if (num2 === 0 && operator === "/") {
     finalNum = "ERROR!";
     setToMathValue(finalNum);
   } else {
     switch (operator) {
       case "+":
-        finalNum = num1 + num2;
+        finalNum = (num1 + num2).toPrecision(10);
+        finalNum = Number(finalNum);
         fixFloatNumbers(finalNum);
         return finalNum;
       case "-":
-        finalNum = num1 - num2;
+        finalNum = (num1 - num2).toPrecision(10);
+        finalNum = Number(finalNum);
         fixFloatNumbers(finalNum);
         return finalNum;
       case "x":
-        finalNum = num1 * num2;
+        finalNum = (num1 * num2).toPrecision(10);
+        finalNum = Number(finalNum);
         fixFloatNumbers(finalNum);
         return finalNum;
       case "/":
-        finalNum = (num1 / num2);
+        finalNum = (num1 / num2).toPrecision(10);
+        finalNum = Number(finalNum);
         fixFloatNumbers(finalNum);
         return finalNum;
       default:
@@ -272,8 +285,10 @@ function doMathFunction(mathArray) {
 }
 
 function fixFloatNumbers(finalNumberToChange) {
-  if (finalNumberToChange.toString().length > 10) {
-    finalNumberToChange = finalNumberToChange.toFixed(10);
+  var checkIfExponent = finalNumberToChange.toString();
+  if (checkIfExponent.includes("e")){
+    setToMathValue(finalNumberToChange.toPrecision(6));
+  } else if (finalNumberToChange.toString().length > 10) {
     setToMathValue(finalNumberToChange);
   } else {
     setToMathValue(finalNumberToChange);
@@ -293,6 +308,7 @@ function setToMathValue(mathValue) {
 
 function displayNumbers() {
   var displayVar = buttonPressedArray[buttonPressedArray.length - 1];
+
   if (displayVar.length > 14){
     var tempString = "";
     tempString = displayVar.substring(0, 14); //Limiting the number of characters on display
@@ -323,4 +339,8 @@ function sideDisplay(){
     .text(equationString)
     .addClass("display-equations")
   $("#display-wrapper>ul").prepend(displayEquation);
+}
+
+function cancelRepeatingZeros(buttonPressed){
+  if (buttonPressedArray[0] === "0" && buttonPressed === "0") return true; 
 }

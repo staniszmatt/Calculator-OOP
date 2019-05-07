@@ -1,7 +1,8 @@
 class Demo{
 
   constructor(){
-    this.cancellation = false;
+    this.cancellation = true;
+    this.demoRunning = false; 
     //bindings
     this.startCalculations = this.startCalculations.bind(this);
     this.timeOutSetup = this.timeOutSetup.bind(this);
@@ -22,10 +23,11 @@ class Demo{
   
   startCalculations(){
     this.cancellation = false;
-    demoRunning = true;
+    this.demoRunning = true;
     this.cancelDemoButtonActivate();
     buttonPressedArray = [""];
     $("output.calc-display").text("0");
+    clearingButtonActions("C");
     this.additionDemo();
   }
 
@@ -66,25 +68,31 @@ class Demo{
     $("button.side-display").toggle("display");
     $("button.cancel-demo").toggle("display");
     this.cancellation = true;
-    demoRunning = false;
+    this.demoRunning = false;
   }  
 
   cancelDemoCalculator(){
-    if (demoRunning){
+    if (this.demoRunning){
       this.cancelDemo();
     }
   }
 
-  equationTitleDemoAppend(titleToAppend){
-    const displayEquation = $("<li>")
+  equationTitleDemoAppend(titleToAppend, equationToDisplay){
+    const displayEquationHeader = $("<li>")
     .text(titleToAppend)
-    .addClass("display-equations")
+    .addClass("display-equations");
+    const displayEquation = $("<li>")
+    .text(equationToDisplay)
+    .addClass("display-equations");
+    $("#display-wrapper>ul").prepend("<br>");
     $("#display-wrapper>ul").prepend(displayEquation);
+    $("#display-wrapper>ul").prepend(displayEquationHeader);
+    $("#display-wrapper>ul").prepend("<br>");
   }
 
   additionDemo(){
     const elmCalcList = ["#1", "#plus", "#2", "#equal"];
-    this.equationTitleDemoAppend("Addition:");
+    this.equationTitleDemoAppend('Addition:', "Equations: 1 + 2 = 3");
     if (this.cancellation){
       return;
     }
@@ -96,7 +104,7 @@ class Demo{
       return;
     }
     const elmCalcList = ["#9", "#minus", "#2", "#equal"];
-    this.equationTitleDemoAppend("Subtraction:");
+    this.equationTitleDemoAppend("Subtraction:", "Equation: 9 - 2 = 7");
     if (this.cancellation){
       return;
     }
@@ -108,7 +116,7 @@ class Demo{
       return;
     }
     const elmCalcList = ["#9", "#negative", "#times", "#9", "#equal"];
-    this.equationTitleDemoAppend("Multiplication with negative number:");
+    this.equationTitleDemoAppend("Multiplication with negative number:", "Equation: -9 X 9 = -81");
     if (this.cancellation){
       return;
     }
@@ -120,7 +128,7 @@ class Demo{
       return;
     }
     const elmCalcList = ["#1", "#divide", "#3", "#equal"];
-    this.equationTitleDemoAppend("Division:");
+    this.equationTitleDemoAppend("Division:", "Equation: 1 / 3 = 1.3333333333");
     this.timeOutSetup(elmCalcList, this.successiveOperationDemo);
   }
 
@@ -129,7 +137,7 @@ class Demo{
       return;
     }
     const elmCalcList = ["#1", "#point", "#5", "#plus", "#1", "#point", "#5", "#plus", "#3", "#equal"];
-    this.equationTitleDemoAppend("Succesive Operation:");
+    this.equationTitleDemoAppend("Succesive Operation:", "Equations: 1.5 + 1.5 + 3 = 6");
     this.timeOutSetup(elmCalcList, this.repeatOperationDemo);
   }
 
@@ -138,7 +146,7 @@ class Demo{
       return;
     }
     const elmCalcList = ["#1", "#0", "#minus", "#1", "#equal", "#equal", "#equal", "#equal"];
-    this.equationTitleDemoAppend("Repeated Operation:");
+    this.equationTitleDemoAppend("Repeated Operation:", "Equation: 10 - 1 = 9 = 8 = 7 = 6");
     this.timeOutSetup(elmCalcList, this.rollOverOperationDemo);
   }
 
@@ -147,7 +155,7 @@ class Demo{
       return;
     }
     const elmCalcList = ["#1", "#plus", "#1", "#plus", "#equal", "#plus", "#equal",];
-    this.equationTitleDemoAppend("Roll Over Operation:");
+    this.equationTitleDemoAppend("Roll Over Operation:", "Equation: 1 + 1 += 4 += 8");
     this.timeOutSetup(elmCalcList, this.orderOfOperationsDemo);
   }
 
@@ -156,7 +164,7 @@ class Demo{
       return;
     }
     const elmCalcList = ["#1", "#plus", "#3", "#divide", "#4", "#plus", "#1", "#0", "#times", "#2", "#equal"];
-    this.equationTitleDemoAppend("Order Of Operations:");
+    this.equationTitleDemoAppend("Order Of Operations:", "Equation: 1 + 3 / 4 + 10 X 2 = 21.75");
     this.timeOutSetup(elmCalcList, this.partialOperandDemo);
   }
 
@@ -165,7 +173,7 @@ class Demo{
       return;
     }
     const elmCalcList = ["#3", "#times", "#equal"];
-    this.equationTitleDemoAppend("Partial Operand:");
+    this.equationTitleDemoAppend("Partial Operand:", "Equation: 3 *= 9");
     this.timeOutSetup(elmCalcList, this.divideByZeroDemo);
   }
 
@@ -174,8 +182,8 @@ class Demo{
       return;
     }
     const elmCalcList = ["#3", "#divide", "#0", "#equal"];
-    this.equationTitleDemoAppend("Dividing By Zero:");
-    this.timeOutSetup(elmCalcList);
-    demoRunning = false;
+    this.equationTitleDemoAppend("Dividing By Zero:", "Equation: 3 / 0 = ERROR");
+    this.timeOutSetup(elmCalcList, this.cancelDemoButtonActivate);
+    this.demoRunning = false;
   }
 }
