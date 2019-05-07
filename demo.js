@@ -178,5 +178,7 @@ class Demo{
     this.equationTitleDemoAppend("Dividing By Zero:");
     this.timeOutSetup(elmCalcList);
     demoRunning = false;
+
+    this.timeOutSetup(elmCalcList, this.cancelDemoButtonActivate);
   }
 }
