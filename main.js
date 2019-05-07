@@ -1,6 +1,6 @@
 $(document).ready(loadAfterInitialize);
 
-var buttonPressedArray = [""];
+var buttonPressedArray = ["0"];
 var demoRunning = false;
 
 function loadAfterInitialize() {
@@ -25,7 +25,7 @@ function getButtonText() {
   var buttonValue = $(this).text();
   var currentNumberString = buttonPressedArray[buttonPressedArray.length - 1];
   if (checkToReturnOperator(buttonValue)) {
-    if (buttonPressedArray.length === 3 && buttonValue === "=" && buttonPressedArray[buttonPressedArray.length - 1] === "") {
+    if (buttonPressedArray.length === 3 && buttonValue === "=" && buttonPressedArray[buttonPressedArray.length - 1] === "0") {
       repeatMathOperationCheck(buttonValue);
     } else {
       repeatMathOperationCheck(buttonValue);
@@ -45,9 +45,9 @@ function getButtonText() {
     } else if (cancelingRepeatingDecimalCheck() && buttonValue === "." || cancelRepeatingZeros(buttonValue)) {
       return;
     }
-    if (buttonPressedArray[buttonPressedArray.length-1] === "" && buttonValue === "."){
-      buttonValue = "0." 
-    }
+    if (buttonPressedArray[buttonPressedArray.length-1] === "0" && buttonValue !== "0" && buttonValue !== "."){
+      buttonPressedArray[buttonPressedArray.length-1] = "";
+    } 
     buttonPressedArray[buttonPressedArray.length - 1] += buttonValue;
     orderOfOperations(buttonValue);
     displayNumbers();
@@ -59,14 +59,14 @@ function getButtonText() {
 
 function clearingButtonActions(clearButtonOptionCEorC) {
   if (clearButtonOptionCEorC === "CE") {
-    buttonPressedArray = [""];
+    buttonPressedArray = ["0"];
     $("output.calc-display").text("0");
     $("#display-wrapper ul").empty();
   } else {
     if (buttonPressedArray[buttonPressedArray.length - 2] === "=") {
       clearingButtonActions("CE");
     } else {
-      buttonPressedArray[buttonPressedArray.length - 1] = "";
+      buttonPressedArray[buttonPressedArray.length - 1] = "0";
       $("output.calc-display").text("0");
     }
   }
@@ -86,9 +86,9 @@ function checkToReturnOperator(operatorCheck) {
 }
 
 function cancelingRepeatOperatorsCheck(operator) {
-  if (operator === buttonPressedArray[buttonPressedArray.length - 2] && buttonPressedArray[buttonPressedArray.length - 1] === "") {
+  if (operator === buttonPressedArray[buttonPressedArray.length - 2] && buttonPressedArray[buttonPressedArray.length - 1] === "0") {
     return true;
-  } else if (buttonPressedArray[0] === "") {
+  } else if (buttonPressedArray[0] === "0") {
     return true;
   }
   return false;
@@ -101,7 +101,7 @@ function cancelingRepeatingDecimalCheck() {
 
 function restartCalcAfterEqualwithNum() {
   if (buttonPressedArray[buttonPressedArray.length - 1] === "=") {
-    buttonPressedArray = [""];
+    buttonPressedArray = ["0"];
     displayNumbers();
   }
 }
@@ -113,7 +113,7 @@ function repeatMathOperationCheck(operator) {
       var tempArray = [];
       tempArray.push(buttonPressedArray[buttonPressedArray.length-1]);
       tempArray.push(operator);
-      tempArray.push("");
+      tempArray.push("0");
       buttonPressedArray = tempArray;
     } else {
       newButtonPressedArray.push(buttonPressedArray[4]);
@@ -128,13 +128,12 @@ function repeatMathOperationCheck(operator) {
     buttonPressedArray.pop();
   } else if (buttonPressedArray.length === 1 && operator === "=") {
     return;
-  } else if (operator === "=" && buttonPressedArray[2] === "") {
-    buttonPressedArray[buttonPressedArray.length - 1] += buttonPressedArray[0];
+  } else if (operator === "=" && buttonPressedArray[2] === "0") {
     buttonPressedArray.push("=");
     doMathFunction(buttonPressedArray);
   } else if (operator !== "=") { //setup order of operation
     if (buttonPressedArray.length > 2) {
-      if (operator !== buttonPressedArray[1] && buttonPressedArray[2] === "") {
+      if (operator !== buttonPressedArray[1] && buttonPressedArray[2] === "0") {
         buttonPressedArray[1] = operator;
       } else if (cancelingRepeatOperatorsCheck(operator)) {
         return;
@@ -142,7 +141,7 @@ function repeatMathOperationCheck(operator) {
         orderOfOperations(operator);
       }
     } else {
-      buttonPressedArray.push(operator, "");
+      buttonPressedArray.push(operator, "0");
     }
   } else {
     buttonPressedArray.push(operator);
@@ -161,7 +160,7 @@ function orderOfOperations(operator) {
   if (lastOrderArray.indexOf(operator) !== -1 && buttonPressedArray.length < 4 || operator === "=" && buttonPressedArray.length < 5) {
     orderOfOperationMath(operator, true);
   } else if (firstOrderArray.indexOf(operator) !== -1 && lastOrderArray.indexOf(preOperator) !== -1) {
-    buttonPressedArray.push(operator, "");
+    buttonPressedArray.push(operator, "0");
   } else if (lastOrderArray.indexOf(operator) !== -1 && firstOrderArray.indexOf(preOperator) !== -1 || operator === "=" && (firstOrderArray.indexOf(perEqlOp) !== -1 || lastOrderArray.indexOf(perEqlOp) !== -1)) {
     orderOfOperationMath(operator, false);
   } else if (firstOrderArray.indexOf(operator) !== -1 && firstOrderArray.indexOf(preOperator) !== -1) {
@@ -183,7 +182,7 @@ function sameOperationMath(operator) {
     var tempMathArray = [];
     tempMathArray.push(tempTotal);
     tempMathArray.push(operator);
-    tempMathArray.push("");
+    tempMathArray.push("0");
     buttonPressedArray = tempMathArray;
   }
 }
@@ -201,7 +200,7 @@ function orderOfOperationMath(operator, booleanForWhichOOO, operatorMatches) {
     multDivArray.push(buttonPressedArray[buttonPressedArray.length - 6])
     multDivArray.push(buttonPressedArray[buttonPressedArray.length - 5])
     multDivArray.push(saveMultDivMath)
-    multDivArray.push(operator, "")
+    multDivArray.push(operator, "0")
     buttonPressedArray = multDivArray
   } else if (!booleanForWhichOOO && operator === "=") {
     var equalHolder = buttonPressedArray.pop();
@@ -224,7 +223,7 @@ function orderOfOperationMath(operator, booleanForWhichOOO, operatorMatches) {
       buttonPressedArray.push(equalHolder);
       buttonPressedArray.push(firstNumMath);
     } else {
-      buttonPressedArray.push(operator, "");
+      buttonPressedArray.push(operator, "0");
     }
   } else {
     multDivArray.push(buttonPressedArray[buttonPressedArray.length - 3]);
@@ -238,7 +237,7 @@ function orderOfOperationMath(operator, booleanForWhichOOO, operatorMatches) {
     firstNumMath = doMathFunction(multDivArray);
     buttonPressedArray = [];
     buttonPressedArray.push(firstNumMath);
-    buttonPressedArray.push(operator, "");
+    buttonPressedArray.push(operator, "0");
   }
 }
 
@@ -247,7 +246,7 @@ function doMathFunction(mathArray) {
   var num1 = Number(mathArray[0]);
   var num2 = Number(mathArray[2]);
   var operator = mathArray[1];
-  if (num2 === 0) {
+  if (num2 === 0 && operator === "/") {
     finalNum = "ERROR!";
     setToMathValue(finalNum);
   } else {
@@ -298,7 +297,7 @@ function displayNumbers() {
   var displayVar = buttonPressedArray[buttonPressedArray.length - 1];
 
   if (displayVar.length > 14){
-    var tempString = "";
+    var tempString = "0";
     tempString = displayVar.substring(0, 14); //Limiting the number of characters on display
     if (tempString.endsWith(".")){
       tempString += displayVar.charAt(15); //Adding a character if the cut off ends with a decimal 
@@ -330,5 +329,5 @@ function sideDisplay(){
 }
 
 function cancelRepeatingZeros(buttonPressed){
-  if (buttonPressedArray[0] === "" && buttonPressed === "0") return true; 
+  if (buttonPressedArray[0] === "0" && buttonPressed === "0") return true; 
 }
