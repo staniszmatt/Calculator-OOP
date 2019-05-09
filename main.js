@@ -253,7 +253,7 @@ function doMathFunction(mathArray) {
   var num1 = Number(mathArray[0]);
   var num2 = Number(mathArray[2]);
   var operator = mathArray[1];
-  if (num2 === 0 && operator === "/") {
+  if (num2 === 0 && operator === "/" || isNaN(num1) || isNaN(num2) || num1===Infinity || num2===Infinity) {
     finalNum = "ERROR!";
     setToMathValue(finalNum);
   } else {
