@@ -181,6 +181,19 @@ div.display>output.calc-display {
   font-size: 0;
 }
 
+@media (max-height: 559px) and (max-width: 300px) {
+  body {
+    height: 550px;
+    width: 300px;
+    overflow: auto;
+  }
+  .wrapper {
+    height: 550px;
+    width: 300px;
+    overflow: auto;
+  }
+}
+
 @media (min-width: 560px) {
   .main-container {
     display: inline-flex;
